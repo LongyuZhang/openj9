@@ -38,6 +38,8 @@ include settings.mk
 
 include count.mk
 
+-include disabled.mk
+
 #######################################
 # run all tests under $(TEST_ROOT)
 #######################################
