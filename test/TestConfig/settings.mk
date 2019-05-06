@@ -102,13 +102,9 @@ else
 export SPEC:=$(SPEC)
 endif
 
-# temporarily support both JAVA_IMPL and JDK_IMPL
+# Setting JDK_IMPL
 ifndef JDK_IMPL
-	ifndef JAVA_IMPL
-		export JDK_IMPL:=openj9
-	else
-		export JDK_IMPL:=$(JAVA_IMPL)
-	endif
+	export JDK_IMPL:=openj9
 else
 	export JDK_IMPL:=$(JDK_IMPL)
 endif
