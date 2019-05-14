@@ -86,8 +86,8 @@ else
 			VM_SUBDIR_PATH=$(TEST_JDK_HOME)$(D)jre$(D)bin$(D)$(VM_SUBDIR)
 			J9VM_PATH=$(TEST_JDK_HOME)$(D)jre$(D)bin$(D)j9vm
 		else
-			VM_SUBDIR_PATH=$(JAVA_LIB_DIR)$(D)$(ARCH_DIR)$(D)$(VM_SUBDIR)
-			J9VM_PATH=$(JAVA_LIB_DIR)$(D)$(ARCH_DIR)$(D)j9vm
+			VM_SUBDIR_PATH=$(JAVA_LIB_DIR)$(D)..$(D)jre$(D)lib$(D)$(ARCH_DIR)$(D)$(VM_SUBDIR)
+			J9VM_PATH=$(JAVA_LIB_DIR)$(D)..$(D)jre$(D)lib$(D)$(ARCH_DIR)$(D)j9vm
 		endif
 	else
 		ifneq (,$(findstring win,$(SPEC))) 
