@@ -32,16 +32,8 @@
 	<property name="ascii.test.dir" value="${BUILD_ROOT}" />
 	<property name="JDK_VERSION" value=""/>
 	<property name="JAVA_BIN" value="${JAVA_BIN}" />
-	<echo> JAVA_BIN is ${JAVA_BIN} </echo>
-	<if>
-		<equals arg1="${JDK_VERSION}" arg2="8"/>
-		<then>
-			<property name="JAVAC" value="${JAVA_BIN}/../../bin/javac" />
-		</then>
-		<else>
-			<property name="JAVAC" value="${JAVA_BIN}/javac" />
-		</else>
-	</if>
+	<property name="JAVAC" value="${TEST_JDK_HOME}/bin/javac" />
+	<echo> JAVAC is ${JAVAC} </echo>
 
 	<var name="build.list" value= "" />
 	<if>
@@ -122,7 +114,6 @@
 						</exec>
 						<var name="JAVA_BIN" unset="true"/>
 						<property name="JAVA_BIN" value="${tmp.java.dir}/sdk/bin" />
-						<echo>set JAVA_BIN=${JAVA_BIN}</echo>
 					</then>
 				</if>
 				<antcall target="build" />
