@@ -34,14 +34,14 @@ use strict;
 use warnings;
 
 sub nameOption14test{
-	my ($java_bin,$cache_max_len_string)=@_;
+	my ($java_exe,$cache_max_len_string)=@_;
 	my $user_name = get_user_name();
 	my $test_name = "nameOption14";
 	
 	my $append_token=get_short_string_for_user( ); 
 	my $expanded_token=$user_name;
 	
-	cache_name_with_fixed_length_test( $java_bin, $test_name, $cache_max_len_string, $append_token, 
+	cache_name_with_fixed_length_test( $java_exe, $test_name, $cache_max_len_string, $append_token, 
 		$expanded_token);
 }		
 	

@@ -33,9 +33,9 @@ use strict;
 use warnings;
 
 sub nameOption16test{
-	my ($java_bin, $cache_max_len_string)=@_;
+	my ($java_exe, $cache_max_len_string)=@_;
 	my $test_name = "nameOption16";
-	cache_name_with_fixed_length_test( $java_bin, $test_name, $cache_max_len_string);
+	cache_name_with_fixed_length_test( $java_exe, $test_name, $cache_max_len_string);
 }		
 	
 nameOption16test((@ARGV));

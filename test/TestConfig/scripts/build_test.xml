@@ -31,7 +31,7 @@
 	<property name="ascii.workspace.dir" value="${TEST_ROOT}" />
 	<property name="ascii.test.dir" value="${BUILD_ROOT}" />
 	<property name="JDK_VERSION" value=""/>
-	<property name="JAVA_BIN" value="${JAVA_BIN}" />
+	<!-- property name="JAVA_BIN" value="${JAVA_BIN}" /-->
 	<property name="JAVAC" value="${TEST_JDK_HOME}/bin/javac" />
 	<echo> JAVAC is ${JAVAC} </echo>
 
@@ -88,7 +88,7 @@
 		<chmod file="${ascii.test.dir}/*.mk" perm="755"/>
 	</target>
 
-
+<!-- 
 	<target name="check_sdk">
 		<available file="${JAVA_BIN}" property="sdk.present" />
 		<if>
@@ -119,5 +119,5 @@
 				<antcall target="build" />
 			</else>
 		</if>
-	</target>
+	</target> -->
 </project>
