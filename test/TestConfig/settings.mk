@@ -87,11 +87,11 @@ else
 export TEST_JDK_HOME := $(subst \,/,$(TEST_JDK_HOME))
 endif
 
-ifeq ($(JDK_VERSION), 8)
-export JAVA_BIN := $(TEST_JDK_HOME)/jre/bin
-else
-export JAVA_BIN := $(TEST_JDK_HOME)/bin
-endif
+# ifeq ($(JDK_VERSION), 8)
+# export JAVA_BIN := $(TEST_JDK_HOME)/jre/bin
+# else
+# export JAVA_BIN := $(TEST_JDK_HOME)/bin
+# endif
 
 OLD_JAVA_HOME := $(JAVA_HOME)
 export JAVA_HOME := $(TEST_JDK_HOME)
