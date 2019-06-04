@@ -41,7 +41,7 @@ endif
 # Set JAVA_SHARED_LIBRARIES_DIR  and VM_SUBDIR for tests which need native library.
 # Set ADD_JVM_LIB_DIR_TO_LIBPATH as tests on some platforms need LIBPATH containing VM directory
 #######################################
-JAVA_LIB_DIR:=$(JAVA_BIN)$(D)..$(D)lib
+JAVA_LIB_DIR:=$(TEST_JDK_HOME)$(D)jre$(D)lib
 VM_SUBDIR=default
 ifneq (,$(findstring cmprssptrs,$(SPEC)))
 VM_SUBDIR=compressedrefs
