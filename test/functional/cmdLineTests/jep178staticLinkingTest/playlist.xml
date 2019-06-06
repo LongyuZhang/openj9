@@ -35,7 +35,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 	-DJVMLIBPATH=$(Q)$(J9VM_PATH)$(Q) \
 	-DJEPTESTCLASS=$(Q)com/ibm/j9/tests/jeptests/StaticLinking$(Q) \
 	-DJVMTITESTCLASS=$(Q)com/ibm/j9/tests/jeptests/StaticAgents$(Q) \
-	-DATTACHTOOLSJAR=$(Q)$(JAVA_BIN)$(D)..$(D)..$(D)lib$(D)tools.jar$(Q) \
+	-DATTACHTOOLSJAR=$(Q)$(TEST_JDK_HOME)$(D)lib$(D)tools.jar$(Q) \
 	-DJVM_OPTIONS=$(Q)$(JVM_OPTIONS)$(Q) \
 	-jar $(CMDLINETESTER_JAR) \
 	-config $(Q)$(TEST_RESROOT)$(D)jep178.xml$(Q) \
