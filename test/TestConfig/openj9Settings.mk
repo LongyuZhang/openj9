@@ -41,7 +41,15 @@ endif
 # Set JAVA_SHARED_LIBRARIES_DIR  and VM_SUBDIR for tests which need native library.
 # Set ADD_JVM_LIB_DIR_TO_LIBPATH as tests on some platforms need LIBPATH containing VM directory
 #######################################
-JAVA_LIB_DIR:=$(JAVA_BIN)$(D)..$(D)lib
+
+TEST_JRE_BIN:=$(TEST_JDK_HOME)/jre/bin
+TEST_JRE_LIB_DIR:=$(TEST_JRE_BIN)$(D)..$(D)lib
+
+JDK_BIN:=$(TEST_JDK_HOME)$(D)bin
+JRE_BIN:=$(TEST_JDK_HOME)$(D)jre$(D)bin
+JDK_LIB_DIR:=$(TEST_JDK_HOME)$(D)lib
+JRE_LIB_DIR:=$(TEST_JDK_HOME)$(D)jre$(D)lib
+
 VM_SUBDIR=default
 ifneq (,$(findstring cmprssptrs,$(SPEC)))
 VM_SUBDIR=compressedrefs
@@ -73,29 +81,29 @@ endif
 # otherwise, native test libs are under NATIVE_TEST_LIBS
 ifneq (, $(findstring current, $(JCL_VERSION)))
 	ifneq (,$(findstring win,$(SPEC)))
-		JAVA_SHARED_LIBRARIES_DIR:=$(JAVA_BIN)$(D)$(VM_SUBDIR)
-		J9VM_PATH=$(JAVA_BIN)$(D)j9vm
+		JAVA_SHARED_LIBRARIES_DIR:=$(TEST_JRE_BIN)$(D)$(VM_SUBDIR)
+		J9VM_PATH=$(TEST_JRE_BIN)$(D)j9vm
 	else
-		JAVA_SHARED_LIBRARIES_DIR:=$(JAVA_LIB_DIR)$(D)$(ARCH_DIR)$(D)$(VM_SUBDIR)
-		J9VM_PATH=$(JAVA_LIB_DIR)$(D)$(ARCH_DIR)$(D)j9vm
+		JAVA_SHARED_LIBRARIES_DIR:=$(TEST_JRE_LIB_DIR)$(D)$(ARCH_DIR)$(D)$(VM_SUBDIR)
+		J9VM_PATH=$(TEST_JRE_LIB_DIR)$(D)$(ARCH_DIR)$(D)j9vm
 	endif
-	ADD_JVM_LIB_DIR_TO_LIBPATH:=export LIBPATH=$(Q)$(LIBPATH)$(P)$(JAVA_LIB_DIR)$(D)$(VM_SUBDIR)$(P)$(JAVA_SHARED_LIBRARIES_DIR)$(P)$(JAVA_BIN)$(D)j9vm$(Q);
+	ADD_JVM_LIB_DIR_TO_LIBPATH:=export LIBPATH=$(Q)$(LIBPATH)$(P)$(TEST_JRE_LIB_DIR)$(D)$(VM_SUBDIR)$(P)$(JAVA_SHARED_LIBRARIES_DIR)$(P)$(TEST_JRE_BIN)$(D)j9vm$(Q);
 else
 	ifneq (, $(findstring 8, $(JDK_VERSION)))
 		ifneq (,$(findstring win,$(SPEC)))
-			VM_SUBDIR_PATH=$(JAVA_BIN)$(D)$(VM_SUBDIR)
-			J9VM_PATH=$(JAVA_BIN)$(D)j9vm
+			VM_SUBDIR_PATH=$(JRE_BIN)$(D)$(VM_SUBDIR)
+			J9VM_PATH=$(JRE_BIN)$(D)j9vm
 		else
-			VM_SUBDIR_PATH=$(JAVA_LIB_DIR)$(D)$(ARCH_DIR)$(D)$(VM_SUBDIR)
-			J9VM_PATH=$(JAVA_LIB_DIR)$(D)$(ARCH_DIR)$(D)j9vm
+			VM_SUBDIR_PATH=$(JRE_LIB_DIR)$(D)$(ARCH_DIR)$(D)$(VM_SUBDIR)
+			J9VM_PATH=$(JRE_LIB_DIR)$(D)$(ARCH_DIR)$(D)j9vm
 		endif
 	else
 		ifneq (,$(findstring win,$(SPEC))) 
-			VM_SUBDIR_PATH=$(JAVA_BIN)$(D)$(VM_SUBDIR)
-			J9VM_PATH=$(JAVA_BIN)$(D)j9vm
+			VM_SUBDIR_PATH=$(JDK_BIN)$(D)$(VM_SUBDIR)
+			J9VM_PATH=$(JDK_BIN)$(D)j9vm
 		else
-			VM_SUBDIR_PATH=$(JAVA_LIB_DIR)$(D)$(VM_SUBDIR)
-			J9VM_PATH=$(JAVA_LIB_DIR)$(D)j9vm
+			VM_SUBDIR_PATH=$(JDK_LIB_DIR)$(D)$(VM_SUBDIR)
+			J9VM_PATH=$(JDK_LIB_DIR)$(D)j9vm
 		endif
 	endif
 
