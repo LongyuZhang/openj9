@@ -31,8 +31,7 @@
 	<property name="ascii.workspace.dir" value="${TEST_ROOT}" />
 	<property name="ascii.test.dir" value="${BUILD_ROOT}" />
 	<property name="JDK_VERSION" value=""/>
-	<property name="JAVA_BIN" value="${JAVA_BIN}" />
-	<echo> JAVA_BIN is ${JAVA_BIN} </echo>
+	<property name="TEST_JDK_HOME" value="${TEST_JDK_HOME}" />
 	<property name="JAVAC" value="${TEST_JDK_HOME}/bin/javac" />
 
 	<var name="build.list" value= "" />
@@ -90,7 +89,7 @@
 
 
 	<target name="check_sdk">
-		<available file="${JAVA_BIN}" property="sdk.present" />
+		<available file="${TEST_JDK_HOME}" property="sdk.present" />
 		<if>
 			<istrue value="${sdk.present}" />
 			<then>
@@ -100,7 +99,7 @@
 				<if>
 					<isfalse value="${sdk.present}" />
 					<then>
-						<echo>${JDK_VERSION} ${JAVA_BIN} is missing</echo>
+						<echo>${JDK_VERSION} ${TEST_JDK_HOME} is missing</echo>
 						<mkdir dir="${TMP_DIR}/${JDK_VERSION}"/>
 						<property name="tmp.java.dir" value="${TMP_DIR}/${JDK_VERSION}" />
 						<delete dir="${tmp.java.dir}"/>
@@ -112,9 +111,8 @@
 							<arg value="755" />
 							<arg value="${tmp.java.dir}" />
 						</exec>
-						<var name="JAVA_BIN" unset="true"/>
-						<property name="JAVA_BIN" value="${tmp.java.dir}/sdk/bin" />
-						<echo>set JAVA_BIN=${JAVA_BIN}</echo>
+						<var name="TEST_JDK_HOME" unset="true"/>
+						<property name="TEST_JDK_HOME" value="${tmp.java.dir}/sdk" />
 					</then>
 				</if>
 				<antcall target="build" />

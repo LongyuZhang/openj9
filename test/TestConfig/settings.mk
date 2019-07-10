@@ -305,7 +305,6 @@ setup_%: testEnvSetup
 		$(ECHO) JAVA_HOME was originally set to $(OLD_JAVA_HOME); \
 	fi
 	@$(ECHO) set JAVA_HOME to $(JAVA_HOME)
-	@$(ECHO) set JAVA_BIN to $(JAVA_BIN)
 	@$(ECHO) set SPEC to $(SPEC)
 	@$(MKTREE) $(Q)$(TESTOUTPUT)$(Q)
 	@$(ECHO) Running $(TESTTARGET) ...
