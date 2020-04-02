@@ -108,7 +108,7 @@
 	<!-- BEGIN: Test -Xshareclasses:storeClassDebugData (Jazz 21781) -->
 	
 	<test id="Test 1: Create a cache" timeout="600" runPath=".">
-		<command>$JAVA_EXE$ $currentMode$,reset -version</command>
+		<command>$JAVA_EXE$ $currentMode$,reset -Xdump:system:events=vmstop -version</command>
 		<output type="success" caseSensitive="yes" regex="yes" javaUtilPattern="yes">(java|openjdk) version</output>
 		<output type="failure" caseSensitive="no" regex="no">Unhandled Exception</output>
 		<output type="failure" caseSensitive="yes" regex="no">Exception:</output>
