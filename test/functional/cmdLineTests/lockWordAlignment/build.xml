@@ -76,6 +76,8 @@
 				<pathelement path="${build}"/>
 				<pathelement location="${LIB_DIR}/asm-all.jar" />
 			</classpath>
+			<jvmarg value="-Xdump:system:events=vmstop" />
+			<jvmarg value="-Xdump:directory=/cores" />
 		</java>
 	</target>
 
@@ -84,7 +86,7 @@
 			<manifest>
 				<attribute name="Main-Class" value="ijo_extends_level_2_I.class"/>
 			</manifest>
-			<fileset dir="${build}" />
+			<fileset dir="${failherebuild}" />
 			<fileset dir="./" />
 		</jar>
 		<copy todir="${DEST}">
