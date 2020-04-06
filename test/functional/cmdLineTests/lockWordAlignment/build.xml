@@ -76,6 +76,7 @@
 				<pathelement path="${build}"/>
 				<pathelement location="${LIB_DIR}/asm-all.jar" />
 			</classpath>
+			<arg line="-Xdump:system:events=vmstop,label=${DEST}/javacore.test.dmp,request=exclusive+compact+prepwalk -Xmx512M" />
 		</java>
 	</target>
 
