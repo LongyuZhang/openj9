@@ -76,6 +76,7 @@
 				<pathelement path="${build}"/>
 				<pathelement location="${LIB_DIR}/asm-all.jar" />
 			</classpath>
+			<jvmarg value="-Xdump:system:events=vmstop"/>
 		</java>
 	</target>
 
