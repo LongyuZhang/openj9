@@ -164,14 +164,18 @@ public class TestSharedCacheJavaAPI extends TestUtils {
 	       		}
 		       	for(String cacheName: nonpersistentList) {
 	       			if (cacheName.indexOf("groupaccess") != -1) {
-	       				runSimpleJavaProgramWithNonPersistentCache(cacheName, "groupAccess");
+						if (isOpenJ9()) {
+							runSimpleJavaProgramWithNonPersistentCache(cacheName, "groupAccess");
+							checkFileExistsForNonPersistentCache(cacheName);
+							nonpersistentCount++;
+						}
 	       			} else {
-	       				runSimpleJavaProgramWithNonPersistentCache(cacheName, null);
+						runSimpleJavaProgramWithNonPersistentCache(cacheName, null);
+						checkFileExistsForNonPersistentCache(cacheName);
+						nonpersistentCount++;
 	       			}
-	       			checkFileExistsForNonPersistentCache(cacheName);
 		    	}
-			    nonpersistentCount = nonpersistentList.size();
-			    
+				
 			    if ((false == isWindows()) 
 			    	&& (nonpersistentCount > 0)
 			    ) {
@@ -556,12 +560,20 @@ public class TestSharedCacheJavaAPI extends TestUtils {
 			      	} catch (IllegalArgumentException e) {
 			      		/* expected to reach here */
 			      	}
-			    	checkFileExistsForNonPersistentCache(cacheName);
+					  
+			      	if (cacheName.indexOf("groupaccess") == -1 || isOpenJ9() ) {
+			    		checkFileExistsForNonPersistentCache(cacheName);
+			    	}
+					
 			    	ret = SharedClassUtilities.destroySharedCache(dir, SharedClassUtilities.PERSISTENT, cacheName, false);
 			    	if ((-1 != ret) && (SharedClassUtilities.DESTROYED_ALL_CACHE != ret)) {
 			    		fail("SharedClassUtilities.destroySharedCache failed: trying to destroy non-persistent cache as a persistent cache");
 			    	}
-			    	checkFileExistsForNonPersistentCache(cacheName);
+					
+			    	if (cacheName.indexOf("groupaccess") == -1 || isOpenJ9() ) {
+			    		checkFileExistsForNonPersistentCache(cacheName);
+			    	}
+
 			    	ret = SharedClassUtilities.destroySharedCache(dir, SharedClassUtilities.NONPERSISTENT, cacheName, false);
 			    	if ((-1 == ret) || (SharedClassUtilities.DESTROYED_ALL_CACHE != ret)) {
 			    		fail("SharedClassUtilities.destroySharedCache failed (non-persistent), Cache Name: " + cacheName);
