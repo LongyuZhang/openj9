@@ -605,16 +605,7 @@ public class TestUtils {
 		//NOTE: use above statics to save some time when running tests ...
 		
 		String cmd = "";
-		if ( isOpenJ9() && cachename.indexOf("groupaccess") != -1 ) {
-			if (persistent==true)
-			{
-				cmd = getCommand("getCacheFileNameGroupAccess",cachename);
-			}
-			else
-			{
-				cmd = getCommand("getCacheFileNameNonPersistGroupAccess",cachename);
-			}
-		} else {
+		if ( isOpenJ9() && cachename.indexOf("groupaccess") == -1 ) {
 			if (persistent==true)
 			{
 				cmd = getCommand("getCacheFileName",cachename);
@@ -623,7 +614,39 @@ public class TestUtils {
 			{
 				cmd = getCommand("getCacheFileNameNonPersist",cachename);
 			}
+		} else {
+			if (persistent==true)
+			{
+				cmd = getCommand("getCacheFileNameGroupAccess",cachename);
+			}
+			else
+			{
+				cmd = getCommand("getCacheFileNameNonPersistGroupAccess",cachename);
+			}
 		}
+
+		System.out.println("lztest cachename is " + cachename + " cmd is " + cmd);
+
+
+		// if ( isOpenJ9() && cachename.indexOf("groupaccess") != -1 ) {
+		// 	if (persistent==true)
+		// 	{
+		// 		cmd = getCommand("getCacheFileNameGroupAccess",cachename);
+		// 	}
+		// 	else
+		// 	{
+		// 		cmd = getCommand("getCacheFileNameNonPersistGroupAccess",cachename);
+		// 	}
+		// } else {
+		// 	if (persistent==true)
+		// 	{
+		// 		cmd = getCommand("getCacheFileName",cachename);
+		// 	}
+		// 	else
+		// 	{
+		// 		cmd = getCommand("getCacheFileNameNonPersist",cachename);
+		// 	}
+		// }
 
 		if (lastcmd_getCacheDir.equals(cmd) && lastresult_getCacheDir.equals("")!=false)
 		{
