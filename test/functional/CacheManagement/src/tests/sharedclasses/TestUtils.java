@@ -546,7 +546,10 @@ public class TestUtils {
 	}
 	
 	protected static String getCacheFileLocationForNonPersistentCache(String cachename) {
-		String cacheDir = getCacheDir(cachename,false);		
+		String cacheDir = getCacheDir(cachename,false);
+		
+		System.out.println("lztest2 cache name is " + cachename + " cache dir is " + cacheDir);
+
 		String expectedFileLocation = 
 				cacheDir+File.separator+
 				getCacheFileName(cachename,false);
@@ -606,6 +609,9 @@ public class TestUtils {
 		
 		String cmd = "";
 		if ( isOpenJ9() && cachename.indexOf("groupaccess") != -1 ) {
+
+			System.out.println("lztest2 j9 with grp here ");
+
 			if (persistent==true)
 			{
 				cmd = getCommand("getCacheFileNameGroupAccess",cachename);
@@ -615,6 +621,9 @@ public class TestUtils {
 				cmd = getCommand("getCacheFileNameNonPersistGroupAccess",cachename);
 			}
 		} else {
+
+			System.out.println("lztest2 zos and nongrp here ");
+
 			if (persistent==true)
 			{
 				cmd = getCommand("getCacheFileName",cachename);
@@ -625,14 +634,25 @@ public class TestUtils {
 			}
 		}
 
+
+		System.out.println("lztest3 cmd is" + cmd);
+
+
 		if (lastcmd_getCacheDir.equals(cmd) && lastresult_getCacheDir.equals("")!=false)
 		{
+			System.out.println("lztest4 return lastcmd " + lastresult_getCacheDir);
+
+
+
+
 			return lastresult_getCacheDir;
 		}
 		lastcmd_getCacheDir=cmd;
 
 		RunCommand.execute(cmd,false);
 		String stderr = RunCommand.lastCommandStderr;
+
+		System.out.println("lztest5 stderr" + stderr);
 
 		String[] stderrarray = stderr.split("\n");
 
