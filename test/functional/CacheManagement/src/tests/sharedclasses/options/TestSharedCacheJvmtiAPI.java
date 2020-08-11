@@ -88,7 +88,7 @@ public class TestSharedCacheJvmtiAPI extends TestUtils {
 			    checkFileExistsForNonPersistentCache("cache2");
 			    cacheCount++;
 				if (isWindows() == false) {
-					if(isOpenJ9() || isMVS() == false) {
+					if(isOpenJ9()) {
 						runSimpleJavaProgramWithNonPersistentCache("cache2_groupaccess", "groupAccess");
 						checkFileExistsForNonPersistentCache("cache2_groupaccess");
 						cacheCount++;
