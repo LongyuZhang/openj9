@@ -33,7 +33,11 @@
 	<property name="dist" location="${DEST}"/>
 	<!--Properties for this particular build-->
     <property name="src" location="./src"/>
+	<property name="src_resources_testBundle" location="./resources/TestBundle/src"/>
+	<property name="src_resources_weavinghookTest" location="./resources/WeavinghookTest/src"/>
 	<property name="build" location="./bin"/>
+	<property name="build_resource_testBundle" location="./bin_resource_testBundle"/>
+	<property name="build_resource_weavinghookTest" location="./bin_resource_weavinghookTest"/>
 	<property name="resources" location="./resources"/>
 	<!-- <property name="src.level" value="1.5"/>
 	<property name="target.level" value="1.5"/> -->
@@ -41,6 +45,8 @@
 	<target name="init">
 		<mkdir dir="${DEST}" />
 		<mkdir dir="${build}"/>
+		<mkdir dir="${build_resource_testBundle}"/>
+		<mkdir dir="${build_resource_weavinghookTest}"/>
 	</target>
 
     <target name="compile" depends="init" description="Using java ${JDK_VERSION} to compile the source " >
@@ -50,6 +56,20 @@
 		<echo>===executable:                   ${compiler.javac}</echo>
 		<echo>===debug:                        on</echo>
 		<echo>===destdir:                      ${DEST}</echo>
+		<javac srcdir="${src_resources_testBundle}" destdir="${build_resource_testBundle}" debug="true" fork="true" executable="${compiler.javac}" includeAntRuntime="false" encoding="ISO-8859-1">
+				<classpath>
+					<fileset dir="${resources}" casesensitive="yes">
+						<include name="org.eclipse.osgi*.jar" />
+					</fileset>
+				</classpath>
+		</javac>		
+		<javac srcdir="${src_resources_weavinghookTest}" destdir="${build_resource_weavinghookTest}" debug="true" fork="true" executable="${compiler.javac}" includeAntRuntime="false" encoding="ISO-8859-1">
+				<classpath>
+					<fileset dir="${resources}" casesensitive="yes">
+						<include name="org.eclipse.osgi*.jar" />
+					</fileset>
+				</classpath>
+		</javac>
 		<javac srcdir="${src}" destdir="${build}" debug="true" fork="true" executable="${compiler.javac}" includeAntRuntime="false" encoding="ISO-8859-1">
 				<classpath>
 					<fileset dir="${resources}" casesensitive="yes">
@@ -60,10 +80,17 @@
 	</target>
 
   	<target name="dist" depends="compile" description="generate the distribution" >
+		<jar jarfile="${DEST}/resourceJars/CDSAdaptorOrphanTestBundles/com.ibm.testbundle_1.0.0._v1.jar" filesonly="true">
+			<fileset dir="${build_resource_testBundle}" />
+		</jar>
+		<jar jarfile="${DEST}/resourceJars/CDSAdaptorOrphanTestBundles/com.ibm.weavinghooktest_1.0.0._v1.jar" filesonly="true">
+			<fileset dir="${build_resource_weavinghookTest}" />
+		</jar>
 	    <jar jarfile="${DEST}/cdsadaptortest.jar" filesonly="true">
 			<fileset dir="${build}" />
 			<fileset dir="${src}" />
 			<fileset dir="${resources}"/>
+			<fileset dir="${DEST}/resourceJars"/>
 		</jar>
 		<copy todir="${DEST}">
 			<fileset dir="${src}/../" includes="*.xml" />
@@ -74,6 +101,8 @@
 	<target name="clean" depends="dist" description="clean up">
 		<!-- Delete the ${build} directory trees -->
 		<delete dir="${build}" />
+		<delete dir="${build_resource_testBundle}" />
+		<delete dir="${build_resource_weavinghookTest}" />
 	</target>
 
 	<target name="build" >

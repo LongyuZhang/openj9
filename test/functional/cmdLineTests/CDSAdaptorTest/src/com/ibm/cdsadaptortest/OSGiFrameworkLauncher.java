@@ -65,7 +65,7 @@ class OSGiFrameworkLauncher {
 		/* osgi.clean is used to clear OSGi cache */
 		System.setProperty("osgi.clean", "true");
 		System.setProperty("osgi.hook.configurators.include",
-				"org.eclipse.osgi.internal.cds.CDSHookConfigurator");
+				"com.ibm.cds.CDSHookConfigurator");
 
 		/* Following is a standard way to launch OSGi framework using Java Service Provider Configuration.
 		 * It requires framework implementation (in this case org.eclipse.osgi bundle) to be on the classpath.  
