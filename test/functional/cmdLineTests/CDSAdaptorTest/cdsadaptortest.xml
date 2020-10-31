@@ -31,7 +31,7 @@
 	<variable name="XSHARECLASSES" value="-Xshareclasses:name=$CACHENAME$" />
 	
 	<!-- NOTE: Update the version of org.eclipse.osgi and com.ibm.cds bundles whenever new version are checked in -->
-	<variable name="OSGI_CDS_JAR_PATH" value=".$CPDL$.$PATHSEP$org.eclipse.osgi_3.8.0.v20120123-1419.jar$CPDL$.$PATHSEP$FrameworkBundles$PATHSEP$com.ibm.cds_2.2.0.201203051532.jar" />
+	<variable name="OSGI_CDS_JAR_PATH" value=".$CPDL$.$PATHSEP$org.eclipse.osgi_3.16.100.v20200904-1304.jar$CPDL$.$PATHSEP$FrameworkBundles$PATHSEP$com.ibm.cds_2.2.0.201203051532.jar" />
 	
 	<variable name="FRAMEWORK_BUNDLE_LOCATION" value=".$PATHSEP$FrameworkBundles" />
 	
