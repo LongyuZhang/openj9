@@ -139,10 +139,13 @@ class OSGiFrameworkLauncher {
 					}
 					System.out.println("Bundle to be installed: "
 							+ bundleFiles[i].toURI().toString());
+					System.out.println("!!!!install bundle folder name is  " + bundleFiles[i].toURI().toString());
 					Bundle bundle = fwBundleContext
 							.installBundle(bundleFiles[i].toURI().toString());
 					if (bundle != null) {
+						System.out.println("!!!!bundle not null, bundle after install is " + bundle);
 						bundleList.add(bundle);
+						System.out.println("!!!!bundle not null, bundleList is " + bundleList);
 					} else {
 						/*
 						 * Return null on failure to install a bundle. Test will

@@ -100,7 +100,9 @@ class CDSAdaptorOrphanTest {
 				excludeList);
 		if ((bundleList != null) && (bundleList.size() != 0)) {
 			for (Bundle bundle : bundleList) {
+				System.out.println("!!!!start bundle " + bundle);
 				bundle.start(0);
+				System.out.println("!!!!finish start bundle " + bundle);
 			}
 		}
 	}
