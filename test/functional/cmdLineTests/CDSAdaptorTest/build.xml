@@ -80,10 +80,10 @@
 	</target>
 
   	<target name="dist" depends="compile" description="generate the distribution" >
-		<jar jarfile="${DEST}/resourceJars/CDSAdaptorOrphanTestBundles/com.ibm.testbundle_1.0.0._v1.jar" filesonly="true">
+		<jar jarfile="${DEST}/resourceJars/CDSAdaptorOrphanTestBundles/com.ibm.testbundle_1.0.0._v1.jar" manifest="${src_resources_testBundle}/../MANIFEST.MF" filesonly="true">
 			<fileset dir="${build_resource_testBundle}" />
 		</jar>
-		<jar jarfile="${DEST}/resourceJars/CDSAdaptorOrphanTestBundles/com.ibm.weavinghooktest_1.0.0._v1.jar" filesonly="true">
+		<jar jarfile="${DEST}/resourceJars/CDSAdaptorOrphanTestBundles/com.ibm.weavinghooktest_1.0.0._v1.jar" manifest="${src_resources_weavinghookTest}/../MANIFEST.MF" filesonly="true">
 			<fileset dir="${build_resource_weavinghookTest}" />
 		</jar>
 	    <jar jarfile="${DEST}/cdsadaptortest.jar" filesonly="true">
