@@ -58,21 +58,21 @@
 		<echo>===destdir:                      ${DEST}</echo>
 		<javac srcdir="${src_resources_testBundle}" destdir="${build_resource_testBundle}" debug="true" fork="true" executable="${compiler.javac}" includeAntRuntime="false" encoding="ISO-8859-1">
 				<classpath>
-					<fileset dir="${resources}" casesensitive="yes">
+					<fileset dir="${LIB_DIR}" casesensitive="yes">
 						<include name="org.eclipse.osgi*.jar" />
 					</fileset>
 				</classpath>
 		</javac>		
 		<javac srcdir="${src_resources_weavinghookTest}" destdir="${build_resource_weavinghookTest}" debug="true" fork="true" executable="${compiler.javac}" includeAntRuntime="false" encoding="ISO-8859-1">
 				<classpath>
-					<fileset dir="${resources}" casesensitive="yes">
+					<fileset dir="${LIB_DIR}" casesensitive="yes">
 						<include name="org.eclipse.osgi*.jar" />
 					</fileset>
 				</classpath>
 		</javac>
 		<javac srcdir="${src}" destdir="${build}" debug="true" fork="true" executable="${compiler.javac}" includeAntRuntime="false" encoding="ISO-8859-1">
 				<classpath>
-					<fileset dir="${resources}" casesensitive="yes">
+					<fileset dir="${LIB_DIR}" casesensitive="yes">
 						<include name="org.eclipse.osgi*.jar" />
 					</fileset>
 				</classpath>

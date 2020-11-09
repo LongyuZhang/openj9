@@ -27,6 +27,7 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 			<variation>NoOptions</variation>
 		</variations>
 		<command>cp $(Q)$(TEST_RESROOT)$(D)cdsadaptortest.jar$(Q) .; \
+		cp $(Q)$(LIB_DIR)$(D)org.eclipse.osgi_3.16.100.v20200904-1304.jar$(Q) .; \
 		true CacheManagement.jar ; \
 		$(Q)$(TEST_JDK_HOME)$(D)bin$(D)jar$(EXECUTABLE_SUFFIX)$(Q) xf cdsadaptortest.jar; \
 		$(CONVERT_TO_EBCDIC_CMD) \
