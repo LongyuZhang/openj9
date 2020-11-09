@@ -24,6 +24,7 @@ package com.ibm.cdsadaptortest;
 
 import org.osgi.framework.*;
 import org.osgi.framework.launch.*;
+import org.osgi.framework.Constants;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.io.File;
@@ -43,7 +44,7 @@ class OSGiFrameworkLauncher {
 	private Framework framework;
 	private BundleContext fwBundleContext;
 
-	private HashMap<String, String> osgiPropertyMap = null;
+	private HashMap<String, String> osgiPropertyMap = new HashMap<>();
 
 	OSGiFrameworkLauncher(String bundleLocation) {
 		frameworkBundleLocation = bundleLocation;
@@ -62,10 +63,8 @@ class OSGiFrameworkLauncher {
 			osgiPropertyMap = map;
 		}
 		
-		/* osgi.clean is used to clear OSGi cache */
-		System.setProperty("osgi.clean", "true");
-		System.setProperty("osgi.hook.configurators.include",
-				"com.ibm.cds.CDSHookConfigurator");
+		/* Constants.FRAMEWORK_STORAGE_CLEAN is used to clear OSGi cache */
+		osgiPropertyMap.put(Constants.FRAMEWORK_STORAGE_CLEAN, "onFirstInit");
 
 		/* Following is a standard way to launch OSGi framework using Java Service Provider Configuration.
 		 * It requires framework implementation (in this case org.eclipse.osgi bundle) to be on the classpath.  
