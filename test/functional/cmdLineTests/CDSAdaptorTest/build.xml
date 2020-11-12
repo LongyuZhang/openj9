@@ -107,8 +107,12 @@
 				<equals arg1="${JDK_IMPL}" arg2="openj9" />
 			</or>
 			<then>
+				<echo>!!!!JDK_IMPl correct ${JDK_IMPL}</echo>
 				<antcall target="clean" inheritall="true" />
 			</then>
+			<else>
+				<echo>!!!!JDK_IMPl notcorrect ${JDK_IMPL}</echo>
+			</else>
 		</if>
 	</target>
 </project>
