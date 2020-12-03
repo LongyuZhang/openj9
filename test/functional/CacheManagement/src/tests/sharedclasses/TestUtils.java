@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2019 IBM Corp. and others
+ * Copyright (c) 2010, 2020 IBM Corp. and others
  *
  * This program and the accompanying materials are made available under
  * the terms of the Eclipse Public License 2.0 which accompanies this
@@ -166,9 +166,23 @@ public class TestUtils {
 		    else
 		    {
 		    	if (isOpenJ9()) {
-		    		config.put("defaultCacheGroupAccessLocation","/tmp/");
-			    } 
-		    	config.put("defaultCacheLocation","/tmp/"); 
+					config.put("defaultCacheGroupAccessLocation","/tmp/");
+
+					System.out.println("!!!!Got here j9 defaultCacheGroupAccessLocation!!!!");
+					
+
+
+
+
+			    } else {
+					// config.put("defaultCacheGroupAccessLocation","/tmp/");
+					// System.out.println("!!!!Got here ibm defaultCacheGroupAccessLocation!!!!");
+					// System.out.println("java version " + System.getProperty("java.version") + "full version " + System.getProperty("java.fullversion"));
+					System.out.println("java spec version " + System.getProperty("java.specification.version"));
+
+				}
+				config.put("defaultCacheLocation","/tmp/"); 
+				System.out.println("!!!!Got here all defaultCacheLocatio!!!!");
 		    }
 		    
 		} catch (Exception e) {
@@ -251,9 +265,13 @@ public class TestUtils {
 				// we can add subsequent options through a tiny extension to that
 				if (config.get("cacheDir")!=null) {
 					insert = insert+",cacheDir="+config.getProperty("cacheDir");
+					
+					System.out.println("!!!!create cache " + insert + " in cacheDir " + config.get("cacheDir"));
 				}
 				if (config.get("controlDir")!=null) {
 					insert = insert+",controlDir="+config.getProperty("controlDir");
+
+					System.out.println("!!!!!create control dir cache " + insert + " in cacheDir " + config.get("controlDir"));
 				}
 			}
 			theCommand = fixup(theCommand,"%1%",insert);
@@ -429,6 +447,7 @@ public class TestUtils {
 		// this hides the magic rule that due to the command construction, the "name=" is always the last part of the
 		// Xshareclasses string in the defined commands.  So to add more shared classes options we just have to append
 		// them to the cache name.
+		System.out.println("!!!!runSimpleJavaProgramWithNonPersistentCache cachename " + cachename + " extraSharedClassesOptions " + extraSharedClassesOptions);
 		runSimpleJavaProgramWithNonPersistentCache(cachename+
 				(extraSharedClassesOptions!=null&&extraSharedClassesOptions.length()>0?","+extraSharedClassesOptions:""));
 	}
@@ -465,6 +484,7 @@ public class TestUtils {
 	}
 	
 	public static void runSimpleJavaProgramWithNonPersistentCache(String cachename) {
+		System.out.println("!!!!runSimpleJavaProgramWithNonPersistentCache got no extra access");
 		RunCommand.execute(getCommand(RunSimpleJavaProgramWithNonPersistentCache,cachename));
 	}
 	
@@ -546,10 +566,20 @@ public class TestUtils {
 	}
 	
 	protected static String getCacheFileLocationForNonPersistentCache(String cachename) {
-		String cacheDir = getCacheDir(cachename,false);		
+		String cacheDir = getCacheDir(cachename,false);	
+		
+		System.out.println("!!!!getCacheFileLocationForNonPersistentCache cacheDir" + cacheDir);
+		// /home/jenkins/javasharedresources
+
 		String expectedFileLocation = 
 				cacheDir+File.separator+
 				getCacheFileName(cachename,false);
+
+
+		System.out.println("getCacheFileLocationForNonPersistentCache expectedFileLocation " + expectedFileLocation);
+
+
+
 		return expectedFileLocation;
 	}
 	protected static String getCacheFileDirectory(boolean forPersistentCache) {
@@ -557,9 +587,23 @@ public class TestUtils {
 		String cacheDirLoc = getConfigParameter("cacheDir");
 		String controlDirLoc=getConfigParameter("controlDir");
 		String theDir = null;
-		if (cacheDirLoc!=null) theDir = cacheDirLoc+(forPersistentCache?"":File.separator+"javasharedresources");
-		else if (controlDirLoc!=null) theDir = controlDirLoc+(forPersistentCache?"":File.separator+"javasharedresources");
-		else theDir = defaultLoc+File.separator+"javasharedresources";
+		if (cacheDirLoc!=null) {
+			theDir = cacheDirLoc+(forPersistentCache?"":File.separator+"javasharedresources");
+			System.out.println("theDir used  cacheDirLoc " + cacheDirLoc);
+
+		}
+		else if (controlDirLoc!=null) {
+			theDir = controlDirLoc+(forPersistentCache?"":File.separator+"javasharedresources");
+			System.out.println("theDir used  controlDirLoc " + controlDirLoc);
+		}
+		else {
+			theDir = defaultLoc+File.separator+"javasharedresources";
+			System.out.println("theDir used neither cachedirloc or controlDirLoc ");
+		}
+
+		System.out.println("theDir is " + theDir);
+
+
 		return theDir;
 	}
 
@@ -605,14 +649,17 @@ public class TestUtils {
 		//NOTE: use above statics to save some time when running tests ...
 		
 		String cmd = "";
-		if ( isOpenJ9() && cachename.indexOf("groupaccess") != -1 ) {
+		if (isOpenJ9() && cachename.indexOf("groupaccess") != -1 ) {
+		// if (false == isOpenJ9() ||  (isOpenJ9() && cachename.indexOf("groupaccess") != -1) ) {
 			if (persistent==true)
 			{
 				cmd = getCommand("getCacheFileNameGroupAccess",cachename);
 			}
 			else
 			{
+				
 				cmd = getCommand("getCacheFileNameNonPersistGroupAccess",cachename);
+				System.out.println("!!!j9 gets nonper cache here " + cmd);
 			}
 		} else {
 			if (persistent==true)
@@ -621,15 +668,19 @@ public class TestUtils {
 			}
 			else
 			{
+				
 				cmd = getCommand("getCacheFileNameNonPersist",cachename);
+				System.out.println("!!!ibm gets nonper cache here " + cmd);
 			}
 		}
 
 		if (lastcmd_getCacheDir.equals(cmd) && lastresult_getCacheDir.equals("")!=false)
 		{
+			System.out.println("!!!return lastresult_getCacheDir " + cmd);
 			return lastresult_getCacheDir;
 		}
 		lastcmd_getCacheDir=cmd;
+		System.out.println("!!!did not return lastresult_getCacheDir " + cmd);
 
 		RunCommand.execute(cmd,false);
 		String stderr = RunCommand.lastCommandStderr;
@@ -1529,7 +1580,7 @@ public class TestUtils {
 	}
 	
 	public static boolean isOpenJ9() {
-		return System.getProperty("java.vm.vendor").toLowerCase().contains("openj9");
+		return false == (System.getProperty("java.vm.vendor").toLowerCase().contains("ibm") && System.getProperty("java.specification.version").contains("1.8"));
 	}
 	
 	public static String removeJavaSharedResourcesDir(String dir) {

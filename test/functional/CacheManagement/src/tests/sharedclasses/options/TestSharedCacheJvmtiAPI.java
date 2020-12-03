@@ -49,8 +49,15 @@ public class TestSharedCacheJvmtiAPI extends TestUtils {
         if (false == isWindows()) {
         	runDestroyAllSnapshots();
         	if (isOpenJ9()) {
-        		runDestroyAllGroupAccessCaches();
-        	}
+				runDestroyAllGroupAccessCaches();
+				System.out.println("!!!!Got here j9 runDestroyAllGroupAccessCaches!!!!");
+			}
+			if (isOpenJ9() && false == isMVS()) {
+				System.out.println("!!!!j9 and not zos!!!!");
+			}
+			if (isOpenJ9() && true == isMVS()) {
+				System.out.println("!!!!j9 and zos!!!!");
+			}
         }
         try {
 	    	dir = getCacheDir();
