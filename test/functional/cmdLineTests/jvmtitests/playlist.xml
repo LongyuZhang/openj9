@@ -38,7 +38,7 @@
 		</variations>
 		<command>$(ADD_JVM_LIB_DIR_TO_LIBPATH) \
 	$(JAVA_COMMAND) $(JVM_OPTIONS) -Xshareclasses:none \
-	-DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
+	--illegal-access=permit -DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
 	-DJAR=$(Q)$(TEST_RESROOT)$(D)jvmtitest.jar$(Q) \
 	-DEXE=$(SQ)$(JAVA_COMMAND) $(JVM_OPTIONS) -Xdump $(SQ) \
 	-DMODE_HINTS=$(Q)$(MODE_HINTS)$(Q) \
@@ -123,7 +123,7 @@
 		</variations>
 		<command>$(ADD_JVM_LIB_DIR_TO_LIBPATH) \
 	$(JAVA_COMMAND) $(JVM_OPTIONS) \
-	-DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
+	--illegal-access=permit -DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
 	-DJAR=$(Q)$(TEST_RESROOT)$(D)jvmtitest.jar$(P)$(LIB_DIR)$(D)asm-all.jar$(Q) \
 	-DEXE=$(SQ)$(JAVA_COMMAND) $(JVM_OPTIONS) -Xdump $(SQ) \
 	-DEXTRA_Add_OPEN_OPTION=$(SQ)--add-opens=java.base/java.lang.reflect=ALL-UNNAMED$(SQ) \
@@ -167,7 +167,7 @@
 		</variations>
 		<command>$(ADD_JVM_LIB_DIR_TO_LIBPATH) \
 	$(JAVA_COMMAND) $(JVM_OPTIONS) -Xshareclasses:none \
-	-DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
+	--illegal-access=permit -DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
 	-DJAR=$(Q)$(TEST_RESROOT)$(D)jvmtitest.jar$(P)$(LIB_DIR)$(D)asm-all.jar$(Q) \
 	-DEXE=$(SQ)$(JAVA_COMMAND) $(JVM_OPTIONS) -Xdump $(SQ) \
 	-DEXTRA_Add_OPEN_OPTION=$(SQ)--add-opens=java.base/java.lang.reflect=ALL-UNNAMED$(SQ) \
@@ -211,7 +211,7 @@
 		</variations>
 		<command>$(ADD_JVM_LIB_DIR_TO_LIBPATH) \
 	$(JAVA_COMMAND) $(JVM_OPTIONS) \
-	-DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
+	--illegal-access=permit -DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
 	-DJAR=$(Q)$(TEST_RESROOT)$(D)jvmtitest.jar$(P)$(LIB_DIR)$(D)asm-all.jar$(Q) \
 	-DEXE=$(SQ)$(JAVA_COMMAND) $(JVM_OPTIONS) -Xdump $(SQ) \
 	-jar $(CMDLINETESTER_JAR) \
@@ -252,7 +252,7 @@
 		</variations>
 		<command>$(ADD_JVM_LIB_DIR_TO_LIBPATH) \
 	$(JAVA_COMMAND) $(JVM_OPTIONS) -Xshareclasses:none \
-	-DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
+	--illegal-access=permit -DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
 	-DJAR=$(Q)$(TEST_RESROOT)$(D)jvmtitest.jar$(P)$(LIB_DIR)$(D)asm-all.jar$(Q) \
 	-DEXE=$(SQ)$(JAVA_COMMAND) $(JVM_OPTIONS) -Xdump $(SQ) \
 	-jar $(CMDLINETESTER_JAR) \
@@ -644,7 +644,7 @@
 		</variations>
 		<command>$(ADD_JVM_LIB_DIR_TO_LIBPATH) \
 	$(JAVA_COMMAND) $(JVM_OPTIONS) -Xshareclasses:none \
-	-DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
+	--illegal-access=permit -DTEST_ROOT=$(Q)$(TEST_RESROOT)$(Q) \
 	-DJAR=$(Q)$(TEST_RESROOT)$(D)jvmtitest.jar$(Q) \
 	-DEXE=$(SQ)$(JAVA_COMMAND) $(JVM_OPTIONS) -Xdump $(SQ) \
 	-DMODE_HINTS=$(Q)$(MODE_HINTS)$(Q) \

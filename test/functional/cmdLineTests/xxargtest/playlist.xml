@@ -29,7 +29,7 @@
 			<variation>NoOptions</variation>
 		</variations>
 		<command>$(JAVA_COMMAND) -DEXE=$(SQ)$(JAVA_COMMAND) $(JVM_OPTIONS)$(SQ) -jar $(CMDLINETESTER_JAR) \
-	-config $(Q)$(TEST_RESROOT)$(D)XXArgumentTesting.xml$(Q); \
+	--illegal-access=permit -config $(Q)$(TEST_RESROOT)$(D)XXArgumentTesting.xml$(Q); \
 	$(TEST_STATUS)</command>
 		<platformRequirements>vm.cmprssptrs</platformRequirements>
 		<levels>

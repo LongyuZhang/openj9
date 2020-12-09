@@ -66,7 +66,7 @@
 		</variations>
 		<command>$(ADD_JVM_LIB_DIR_TO_LIBPATH) \
 	$(JAVA_COMMAND) $(JVM_OPTIONS) \
-	-DRESJAR=$(CMDLINETESTER_RESJAR) \
+	--illegal-access=permit -DRESJAR=$(CMDLINETESTER_RESJAR) \
 	-DEXE=$(SQ)$(JAVA_COMMAND) $(JVM_OPTIONS)$(SQ) \
 	-DJAVA_EXECUTABLE_DIR=$(Q)$(TEST_JDK_HOME)$(D)bin$(Q) \
 	-DUTILS_DIR=$(Q)$(JVM_TEST_ROOT)$(D)functional$(D)cmdLineTests$(D)utils$(Q) \

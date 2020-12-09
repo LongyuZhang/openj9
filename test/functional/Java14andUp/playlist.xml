@@ -108,7 +108,7 @@
         <variations>
             <variation>--enable-preview -XX:+ShowCodeDetailsInExceptionMessages</variation>
         </variations>
-        <command>$(JAVA_COMMAND) $(JVM_OPTIONS) -DhasDebugInfo=false \
+        <command>$(JAVA_COMMAND) $(JVM_OPTIONS) -DhasDebugInfo=false --illegal-access=permit \
             -cp $(Q)$(RESOURCES_DIR)$(P)$(TESTNG)$(P)$(TEST_RESROOT)$(D)GeneralTest-noDebugInfo.jar$(Q) \
             org.testng.TestNG -d $(REPORTDIR) $(Q)$(TEST_RESROOT)$(D)testng.xml$(Q) -testnames JEP358NPEMessageTests \
             -groups $(TEST_GROUP) \
