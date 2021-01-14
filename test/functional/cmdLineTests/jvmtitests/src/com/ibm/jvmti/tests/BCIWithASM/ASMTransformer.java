@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2018 IBM Corp. and others
+ * Copyright (c) 2001, 2021 IBM Corp. and others
  *
  * This program and the accompanying materials are made available under
  * the terms of the Eclipse Public License 2.0 which accompanies this
@@ -20,59 +20,59 @@
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
  *******************************************************************************/
 package com.ibm.jvmti.tests.BCIWithASM;
-import static org.objectweb.asm.Opcodes.ACC_PRIVATE;
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
-import static org.objectweb.asm.Opcodes.ACC_SUPER;
-import static org.objectweb.asm.Opcodes.ACONST_NULL;
-import static org.objectweb.asm.Opcodes.ALOAD;
-import static org.objectweb.asm.Opcodes.ASTORE;
-import static org.objectweb.asm.Opcodes.BIPUSH;
-import static org.objectweb.asm.Opcodes.DDIV;
-import static org.objectweb.asm.Opcodes.DLOAD;
-import static org.objectweb.asm.Opcodes.DMUL;
-import static org.objectweb.asm.Opcodes.DRETURN;
-import static org.objectweb.asm.Opcodes.DSTORE;
-import static org.objectweb.asm.Opcodes.DUP;
-import static org.objectweb.asm.Opcodes.GETSTATIC;
-import static org.objectweb.asm.Opcodes.GOTO;
-import static org.objectweb.asm.Opcodes.IADD;
-import static org.objectweb.asm.Opcodes.IALOAD;
-import static org.objectweb.asm.Opcodes.IASTORE;
-import static org.objectweb.asm.Opcodes.ICONST_0;
-import static org.objectweb.asm.Opcodes.ICONST_1;
-import static org.objectweb.asm.Opcodes.ICONST_2;
-import static org.objectweb.asm.Opcodes.ICONST_3;
-import static org.objectweb.asm.Opcodes.ICONST_5;
-import static org.objectweb.asm.Opcodes.ICONST_M1;
-import static org.objectweb.asm.Opcodes.IDIV;
-import static org.objectweb.asm.Opcodes.IF_ICMPGE;
-import static org.objectweb.asm.Opcodes.IF_ICMPLE;
-import static org.objectweb.asm.Opcodes.IF_ICMPLT;
-import static org.objectweb.asm.Opcodes.IF_ICMPNE;
-import static org.objectweb.asm.Opcodes.ILOAD;
-import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
-import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
-import static org.objectweb.asm.Opcodes.IRETURN;
-import static org.objectweb.asm.Opcodes.ISTORE;
-import static org.objectweb.asm.Opcodes.ISUB;
-import static org.objectweb.asm.Opcodes.JSR;
-import static org.objectweb.asm.Opcodes.NEWARRAY;
-import static org.objectweb.asm.Opcodes.POP;
-import static org.objectweb.asm.Opcodes.RET;
-import static org.objectweb.asm.Opcodes.RETURN;
-import static org.objectweb.asm.Opcodes.T_INT;
-import static org.objectweb.asm.Opcodes.V1_6;
-import static org.objectweb.asm.Opcodes.V1_7;
-import static org.objectweb.asm.Opcodes.V1_5;
+import static jdk.internal.org.objectweb.asm.Opcodes.ACC_PRIVATE;
+import static jdk.internal.org.objectweb.asm.Opcodes.ACC_PUBLIC;
+import static jdk.internal.org.objectweb.asm.Opcodes.ACC_SUPER;
+import static jdk.internal.org.objectweb.asm.Opcodes.ACONST_NULL;
+import static jdk.internal.org.objectweb.asm.Opcodes.ALOAD;
+import static jdk.internal.org.objectweb.asm.Opcodes.ASTORE;
+import static jdk.internal.org.objectweb.asm.Opcodes.BIPUSH;
+import static jdk.internal.org.objectweb.asm.Opcodes.DDIV;
+import static jdk.internal.org.objectweb.asm.Opcodes.DLOAD;
+import static jdk.internal.org.objectweb.asm.Opcodes.DMUL;
+import static jdk.internal.org.objectweb.asm.Opcodes.DRETURN;
+import static jdk.internal.org.objectweb.asm.Opcodes.DSTORE;
+import static jdk.internal.org.objectweb.asm.Opcodes.DUP;
+import static jdk.internal.org.objectweb.asm.Opcodes.GETSTATIC;
+import static jdk.internal.org.objectweb.asm.Opcodes.GOTO;
+import static jdk.internal.org.objectweb.asm.Opcodes.IADD;
+import static jdk.internal.org.objectweb.asm.Opcodes.IALOAD;
+import static jdk.internal.org.objectweb.asm.Opcodes.IASTORE;
+import static jdk.internal.org.objectweb.asm.Opcodes.ICONST_0;
+import static jdk.internal.org.objectweb.asm.Opcodes.ICONST_1;
+import static jdk.internal.org.objectweb.asm.Opcodes.ICONST_2;
+import static jdk.internal.org.objectweb.asm.Opcodes.ICONST_3;
+import static jdk.internal.org.objectweb.asm.Opcodes.ICONST_5;
+import static jdk.internal.org.objectweb.asm.Opcodes.ICONST_M1;
+import static jdk.internal.org.objectweb.asm.Opcodes.IDIV;
+import static jdk.internal.org.objectweb.asm.Opcodes.IF_ICMPGE;
+import static jdk.internal.org.objectweb.asm.Opcodes.IF_ICMPLE;
+import static jdk.internal.org.objectweb.asm.Opcodes.IF_ICMPLT;
+import static jdk.internal.org.objectweb.asm.Opcodes.IF_ICMPNE;
+import static jdk.internal.org.objectweb.asm.Opcodes.ILOAD;
+import static jdk.internal.org.objectweb.asm.Opcodes.INVOKESPECIAL;
+import static jdk.internal.org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
+import static jdk.internal.org.objectweb.asm.Opcodes.IRETURN;
+import static jdk.internal.org.objectweb.asm.Opcodes.ISTORE;
+import static jdk.internal.org.objectweb.asm.Opcodes.ISUB;
+import static jdk.internal.org.objectweb.asm.Opcodes.JSR;
+import static jdk.internal.org.objectweb.asm.Opcodes.NEWARRAY;
+import static jdk.internal.org.objectweb.asm.Opcodes.POP;
+import static jdk.internal.org.objectweb.asm.Opcodes.RET;
+import static jdk.internal.org.objectweb.asm.Opcodes.RETURN;
+import static jdk.internal.org.objectweb.asm.Opcodes.T_INT;
+import static jdk.internal.org.objectweb.asm.Opcodes.V1_6;
+import static jdk.internal.org.objectweb.asm.Opcodes.V1_7;
+import static jdk.internal.org.objectweb.asm.Opcodes.V1_5;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.ClassReader;
+import jdk.internal.org.objectweb.asm.ClassVisitor;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 public class ASMTransformer {
 

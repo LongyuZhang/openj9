@@ -24,7 +24,7 @@ package org.openj9.test.invoker.util;
 import java.io.*;
 import java.util.Hashtable;
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import org.testng.log4testng.Logger;
 
 public abstract class ClassGenerator implements Opcodes {

@@ -32,7 +32,7 @@ import javassist.bytecode.CodeIterator;
 import javassist.bytecode.MethodInfo;
 import javassist.bytecode.Opcode;
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 
 public class DummyClassGenerator extends ClassGenerator {
 
