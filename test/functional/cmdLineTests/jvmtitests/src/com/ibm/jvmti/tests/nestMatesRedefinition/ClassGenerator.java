@@ -22,7 +22,7 @@
 
 package com.ibm.jvmti.tests.nestMatesRedefinition;
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;

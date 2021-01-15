@@ -21,7 +21,7 @@
  *******************************************************************************/
 package org.openj9.test.jsr335;
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 
 class ASMInterfaceEarlyInit implements Opcodes {
 	public static byte[] dumpI() {		

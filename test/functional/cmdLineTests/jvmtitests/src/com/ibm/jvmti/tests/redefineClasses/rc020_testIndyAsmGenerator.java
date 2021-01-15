@@ -31,7 +31,7 @@ import static org.objectweb.asm.Opcodes.RETURN;
 import static org.objectweb.asm.Opcodes.ACC_STATIC;
 import static org.objectweb.asm.Opcodes.H_INVOKESTATIC;
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Handle;
 import org.objectweb.asm.MethodVisitor;

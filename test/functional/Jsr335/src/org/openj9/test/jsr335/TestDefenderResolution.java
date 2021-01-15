@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 import org.testng.log4testng.Logger;
 import java.util.*;
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import org.openj9.test.jsr335.interfaces.*;
 
 public class TestDefenderResolution implements Opcodes{

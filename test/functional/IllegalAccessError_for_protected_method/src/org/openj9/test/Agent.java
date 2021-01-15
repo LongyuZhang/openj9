@@ -26,7 +26,7 @@ import java.lang.instrument.IllegalClassFormatException;
 import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import org.testng.log4testng.Logger;
 
 /**

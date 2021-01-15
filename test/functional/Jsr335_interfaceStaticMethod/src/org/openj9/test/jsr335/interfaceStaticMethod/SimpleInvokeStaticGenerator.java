@@ -39,7 +39,7 @@ import static org.objectweb.asm.Opcodes.LRETURN;
 import static org.objectweb.asm.Opcodes.V1_7;
 
 import java.util.*;
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import org.objectweb.asm.Opcodes.*;
 
 

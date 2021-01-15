@@ -28,7 +28,7 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.lang.reflect.*;
  
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import static org.objectweb.asm.Opcodes.*;
 
 /**

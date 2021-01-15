@@ -25,7 +25,7 @@ package org.openj9.test.classRelationshipVerifier;
 import java.lang.reflect.*;
 import org.testng.annotations.Test;
 import org.testng.Assert;
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 
 /**
  * Definitions:

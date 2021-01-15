@@ -22,7 +22,7 @@ package org.openj9.test.utilities;
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
  *******************************************************************************/
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import org.openj9.test.util.VersionCheck;
 
  public class RecordClassGenerator implements Opcodes {

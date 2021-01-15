@@ -40,7 +40,7 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Handle;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Type;
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 
 import java.util.*;
 import java.io.*;

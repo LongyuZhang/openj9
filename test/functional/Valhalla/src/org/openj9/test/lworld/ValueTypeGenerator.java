@@ -21,7 +21,7 @@
  *******************************************************************************/
 package org.openj9.test.lworld;
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 
 import static org.objectweb.asm.Opcodes.*;
 

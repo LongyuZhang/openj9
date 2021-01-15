@@ -33,7 +33,7 @@ import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
 import static org.objectweb.asm.Opcodes.RETURN;
 
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 
 import java.util.*;
 import java.io.*;

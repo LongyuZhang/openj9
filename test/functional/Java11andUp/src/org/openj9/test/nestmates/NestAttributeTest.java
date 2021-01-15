@@ -23,7 +23,7 @@
 package org.openj9.test.nestmates;
 
 import java.lang.reflect.*;
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

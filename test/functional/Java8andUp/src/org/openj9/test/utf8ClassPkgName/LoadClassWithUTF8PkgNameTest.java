@@ -30,7 +30,7 @@ import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import static org.objectweb.asm.Opcodes.ACC_SUPER;
 import static org.objectweb.asm.Opcodes.ALOAD;

@@ -22,7 +22,7 @@
 package org.openj9.test.constructorverify;
 
 import java.util.*;
-import org.objectweb.asm.*;
+import jdk.internal.org.objectweb.asm.*;
 
 public class ClassGenerator implements Opcodes {
 
