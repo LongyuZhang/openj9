@@ -23,8 +23,8 @@ package org.openj9.test.invoker.util;
 
 import java.util.Hashtable;
 
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 public class HelperClassGenerator extends ClassGenerator {
 

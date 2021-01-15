@@ -24,10 +24,10 @@ package org.openj9.test.jsr335.defendersupersends.asm;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.Opcodes;
 
 import org.testng.log4testng.Logger;
 

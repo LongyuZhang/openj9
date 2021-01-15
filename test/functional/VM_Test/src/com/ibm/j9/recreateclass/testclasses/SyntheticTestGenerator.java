@@ -24,11 +24,11 @@ package com.ibm.j9.recreateclass.testclasses;
 
 import static org.objectweb.asm.Opcodes.*;
 
-import org.objectweb.asm.Attribute;
-import org.objectweb.asm.ByteVector;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.FieldVisitor;
-import org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.Attribute;
+import jdk.internal.org.objectweb.asm.ByteVector;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.FieldVisitor;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 /**
  * This class generates a class which has ACC_SYNTHETIC flag set in class/field/method access_flags.

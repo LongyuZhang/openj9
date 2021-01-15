@@ -32,9 +32,9 @@ import static org.objectweb.asm.Opcodes.ACC_STATIC;
 import static org.objectweb.asm.Opcodes.H_INVOKESTATIC;
 
 import jdk.internal.org.objectweb.asm.*;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Handle;
-import org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.Handle;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 import java.lang.invoke.CallSite;
 import java.lang.invoke.MethodHandles;

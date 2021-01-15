@@ -21,8 +21,8 @@
  *******************************************************************************/
 package com.ibm.jvmti.tests.BCIWithASM;
 
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.commons.AdviceAdapter;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.commons.AdviceAdapter;
 
 public class AddTimerAdapter extends AdviceAdapter {
 	

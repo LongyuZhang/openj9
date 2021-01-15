@@ -24,8 +24,8 @@ package org.openj9.test.defineModuleAsClass;
 import org.testng.annotations.*;
 import org.testng.*;
 
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Opcodes;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.Opcodes;
 
 /**
  * Validate that Java 9 modules will be rejected and the correct error thrown

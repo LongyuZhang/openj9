@@ -34,8 +34,8 @@ import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 import static org.objectweb.asm.Opcodes.V1_8;
 import static org.objectweb.asm.Opcodes.ACC_FINAL;
 
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 /* This class generates the ITestChild interface. */
 public class GenerateInterfaceFromASMForITestChild {

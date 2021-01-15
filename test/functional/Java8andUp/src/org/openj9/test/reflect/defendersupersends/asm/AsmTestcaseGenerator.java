@@ -21,9 +21,9 @@
  *******************************************************************************/
 package org.openj9.test.reflect.defendersupersends.asm;
 
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 public class AsmTestcaseGenerator {
 	private final AsmLoader target;

@@ -30,8 +30,8 @@ import static org.objectweb.asm.Opcodes.V1_8;
 import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 import static org.objectweb.asm.Opcodes.GETSTATIC;
 
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 /* This class is used to generate bytecodes for the required classes which implement our required interfaces from their respective ASM dumps,  
  * and return the bytecodes to the calling classloaders in the form of byte arrays.

@@ -21,7 +21,7 @@
  *******************************************************************************/
 package org.openj9.test.reflect.defendersupersends.asm;
 
-import org.objectweb.asm.Opcodes;
+import jdk.internal.org.objectweb.asm.Opcodes;
 
 /**
  * AsmGenerator is a generic interface that is used by the ShimLoader to dynamically load classes

@@ -28,10 +28,10 @@ import org.testng.AssertJUnit;
 import java.lang.reflect.Method;
 import java.util.Hashtable;
 
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Type;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.Type;
 
 import org.openj9.test.invoker.util.ClassGenerator;
 import org.openj9.test.invoker.util.DummyClassGenerator;

@@ -24,9 +24,9 @@ package com.ibm.j9.recreateclass.testclasses;
 
 import static org.objectweb.asm.Opcodes.*;
 
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 /**
  * This class generates a class which uses JSR/RET bytecodes to implement finally block.

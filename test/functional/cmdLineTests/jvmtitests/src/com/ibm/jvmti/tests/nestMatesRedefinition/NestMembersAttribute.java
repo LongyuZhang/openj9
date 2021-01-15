@@ -22,10 +22,10 @@
 
 package com.ibm.jvmti.tests.nestMatesRedefinition;
 
-import org.objectweb.asm.Attribute;
-import org.objectweb.asm.ByteVector;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.Attribute;
+import jdk.internal.org.objectweb.asm.ByteVector;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.Label;
 
 /*
  * Nestmates attributes are a future java feature and, as such, the ASM6 API

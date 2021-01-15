@@ -30,9 +30,9 @@ import org.testng.*;
 
 import jdk.internal.misc.Unsafe;
 
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.ModuleVisitor;
-import org.objectweb.asm.Opcodes;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.ModuleVisitor;
+import jdk.internal.org.objectweb.asm.Opcodes;
 
 /**
  * Validate that classes with Java 9 CONSTANT_Module and CONSTANT_Package

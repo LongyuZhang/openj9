@@ -22,10 +22,10 @@
 
 package org.openj9.test.nestmates;
 
-import org.objectweb.asm.Attribute;
-import org.objectweb.asm.ByteVector;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.Attribute;
+import jdk.internal.org.objectweb.asm.ByteVector;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.Label;
 
 final class NestMembersAttribute extends Attribute{
 	private String[] nestMembers;
