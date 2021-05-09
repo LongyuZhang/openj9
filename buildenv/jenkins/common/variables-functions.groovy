@@ -640,12 +640,17 @@ def set_sdk_variables() {
     }
     echo "SDK_FILENAME:'${SDK_FILENAME}'"
 
+    ARCHIVE_CODE_COVERAGE_FILES = EXTRA_MAKE_OPTIONS.contains('CODE_COVERAGE=ON') ? true : false
+    echo "ARCHIVE_CODE_COVERAGE_FILES:'${ARCHIVE_CODE_COVERAGE_FILES}'"
+
     TEST_FILENAME = "test-images.tar.gz"
+    CODE_COVERAGE_FILENAME = "code-coverage-files.tar.gz"
     JAVADOC_FILENAME = "OpenJ9-JDK${SDK_VERSION}-Javadoc-${SPEC}-${DATESTAMP}.tar.gz"
     JAVADOC_OPENJ9_ONLY_FILENAME = "OpenJ9-JDK${SDK_VERSION}-Javadoc-openj9-${SPEC}-${DATESTAMP}.tar.gz"
     DEBUG_IMAGE_FILENAME = "debug-image.tar.gz"
     echo "Using SDK_FILENAME = ${SDK_FILENAME}"
     echo "Using TEST_FILENAME = ${TEST_FILENAME}"
+    echo "Using CODE_COVERAGE_FILENAME = ${CODE_COVERAGE_FILENAME}"
     echo "Using JAVADOC_FILENAME = ${JAVADOC_FILENAME}"
     echo "Using JAVADOC_OPENJ9_ONLY_FILENAME = ${JAVADOC_OPENJ9_ONLY_FILENAME}"
     echo "Using DEBUG_IMAGE_FILENAME = ${DEBUG_IMAGE_FILENAME}"

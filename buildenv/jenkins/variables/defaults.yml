@@ -219,6 +219,8 @@ ppc64le_linux:
     build: 'ci.role.build && hw.arch.ppc64le && sw.os.cent.7'
   extra_configure_options:
     all: '--enable-jitserver'
+  extra_make_options:
+    all: 'EXTRA_CMAKE_ARGS=-DCODE_COVERAGE=ON'
   build_env:
     cmd: 'source /home/jenkins/set_gcc7.5.0_env'
 #========================================#
@@ -277,6 +279,8 @@ s390x_linux:
     11: 'linux-s390x-normal-server-release'
   node_labels:
     build: 'ci.role.build && hw.arch.s390x && sw.os.rhel.7'
+  extra_make_options:
+    all: 'EXTRA_CMAKE_ARGS=-DCODE_COVERAGE=ON'
   build_env:
     cmd: 'source /home/jenkins/set_gcc7.5.0_env'
   excluded_tests:
@@ -411,6 +415,8 @@ x86-64_linux:
       11: 'eclipseopenj9/jenkins-agent-x86-centos6:15'
   extra_configure_options:
     all: '--enable-jitserver'
+  extra_make_options:
+    all: 'EXTRA_CMAKE_ARGS=-DCODE_COVERAGE=ON'
   build_env:
     cmd:
       16: 'source /home/jenkins/set_gcc7.5.0_env'
