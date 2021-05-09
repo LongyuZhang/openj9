@@ -309,7 +309,8 @@ def archive_sdk() {
                     // Note: to preserve the files ACLs set _OS390_USTAR=Y env variable (see variable files)
                     sh "pax -wvz '-s#${buildDir}${testDir}#test-images#' -f ${TEST_FILENAME} ${buildDir}${testDir}"
                 } else {
-                    sh "tar -C ${buildDir} -zcvf ${TEST_FILENAME} ${testDir} --transform 's,${testDir},test-images,'"
+                    sh "ls"
+                    sh "tar -C ${buildDir} -zcf ${TEST_FILENAME} ${testDir} --transform 's,${testDir},test-images,'"
                 }
             }
             // test if the debug-image directory is present
@@ -319,12 +320,14 @@ def archive_sdk() {
                     // Change all suffixes from .debuginfo to .so; then remove the .so suffix
                     // from names in the bin directory. This will result in an archive that
                     // can be extracted overtop of a jdk yielding one that is debuggable.
-                    sh "tar -C ${debugImageDir} -zcvf ${DEBUG_IMAGE_FILENAME} . --transform 's#\\.debuginfo\$#.so#' --transform 's#\\(bin/.*\\)\\.so\$#\\1#' --show-stored-names"
+                    sh "ls"
+                    sh "tar -C ${debugImageDir} -zcf ${DEBUG_IMAGE_FILENAME} . --transform 's#\\.debuginfo\$#.so#' --transform 's#\\(bin/.*\\)\\.so\$#\\1#' --show-stored-names"
                 } else if (SPEC.contains('zos')) {
                     // Note: to preserve the files ACLs set _OS390_USTAR=Y env variable (see variable files)
                     sh "pax -wvz '-s#${debugImageDir}##' -f ${DEBUG_IMAGE_FILENAME} ${debugImageDir}"
                 } else {
-                    sh "tar -C ${debugImageDir} -zcvf ${DEBUG_IMAGE_FILENAME} ."
+                    sh "ls"
+                    sh "tar -C ${debugImageDir} -zcf ${DEBUG_IMAGE_FILENAME} ."
                 }
             }
             if (params.ARCHIVE_JAVADOC) {
@@ -351,6 +354,16 @@ def archive_sdk() {
                     }
                 }
             }
+
+            // lzlzTO-DO: add CODE_VOVERAGE
+            def CODE_COVERAGE = true
+            if (CODE_COVERAGE) {
+                def codeCoverageDir = "build/${RELEASE}/vm/runtime/"
+                // Select only .c and .gcno files for code coverage test
+                def selectCmd = "find . -name '*.c' -or -name '*.gcno'"
+                sh "( cd ${codeCoverageDir} && ${selectCmd} | ${archiveCmd} ) > ${CODE_COVERAGE_FILENAME}"
+            }
+
             if (ARTIFACTORY_CONFIG) {
                 def specs = []
                 def sdkSpec = ["pattern": "${OPENJDK_CLONE_DIR}/${SDK_FILENAME}",
@@ -375,6 +388,13 @@ def archive_sdk() {
                                                  "props": "build.buildIdentifier=${BUILD_IDENTIFIER}"]
                     specs.add(javadocOpenJ9OnlySpec)
                 }
+                if (CODE_COVERAGE) {
+                    def codeCoverageSpec = ["pattern": "${OPENJDK_CLONE_DIR}/${CODE_COVERAGE_FILENAME}",
+                                       "target": "${ARTIFACTORY_CONFIG['uploadDir']}",
+                                       "props": "build.buildIdentifier=${BUILD_IDENTIFIER}"]
+                    specs.add(codeCoverageSpec)
+                }
+
                 def uploadFiles = [files : specs]
                 def uploadSpec = JsonOutput.toJson(uploadFiles)
                 upload_artifactory(uploadSpec)
@@ -404,6 +424,13 @@ def archive_sdk() {
                         echo "Javadoc (OpenJ9 extensions only):'${JAVADOC_OPENJ9_ONLY_LIB_URL}'"
                     }
                 }
+                if (CODE_COVERAGE) {
+                    if (fileExists("${CODE_COVERAGE_FILENAME}")) {
+                        CODE_COVERAGE_LIB_URL = "${ARTIFACTORY_CONFIG[ARTIFACTORY_CONFIG['defaultGeo']]['url']}/${ARTIFACTORY_CONFIG['uploadDir']}${CODE_COVERAGE_FILENAME}"
+                        currentBuild.description += "<br><a href=${CODE_COVERAGE_LIB_URL}>${CODE_COVERAGE_FILENAME}</a>"
+                        echo "Code Coverage:'${CODE_COVERAGE_LIB_URL}'"
+                    }
+                }
                 echo "CUSTOMIZED_SDK_URL:'${CUSTOMIZED_SDK_URL}'"
             } else {
                 echo "ARTIFACTORY server is not set saving artifacts on jenkins."
@@ -411,6 +438,9 @@ def archive_sdk() {
                 if (params.ARCHIVE_JAVADOC) {
                     ARTIFACTS_FILES += ",**/${JAVADOC_FILENAME}"
                     ARTIFACTS_FILES += ",**/${JAVADOC_OPENJ9_ONLY_FILENAME}"
+                }
+                if (CODE_COVERAGE) {
+                    ARTIFACTS_FILES += ",**/${CODE_COVERAGE_FILENAME}"
                 }
                 archiveArtifacts artifacts: ARTIFACTS_FILES, fingerprint: false, onlyIfSuccessful: true
             }
