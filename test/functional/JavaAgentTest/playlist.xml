@@ -116,7 +116,6 @@
 			<variation>Mode107</variation>
 		</variations>
 		<command>$(JAVA_COMMAND) $(JVM_OPTIONS) \
-	--illegal-access=permit \
 	--add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED  --add-opens=java.base/java.lang=ALL-UNNAMED \
 	--add-exports=java.base/jdk.internal.org.objectweb.asm.commons=ALL-UNNAMED \
 	-javaagent:$(Q)$(TEST_RESROOT)$(D)javaagenttest.jar$(Q) \
@@ -146,7 +145,6 @@
 			<variation>Mode107</variation>
 		</variations>
 		<command>$(JAVA_COMMAND) $(JVM_OPTIONS) \
-	--illegal-access=permit \
 	--add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED  --add-opens=java.base/java.lang=ALL-UNNAMED \
 	--add-exports=java.base/jdk.internal.org.objectweb.asm.commons=ALL-UNNAMED \
 	-javaagent:$(Q)$(TEST_RESROOT)$(D)javaagenttest.jar$(Q) \
@@ -175,7 +173,6 @@
 			<variation>Mode109</variation>
 		</variations>
 		<command>$(JAVA_COMMAND) $(JVM_OPTIONS) -Xgc:scvTenureAge=14,scvNoAdaptiveTenure \
-	--illegal-access=permit \
 	--add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED  --add-opens=java.base/java.lang=ALL-UNNAMED \
 	--add-exports=java.base/jdk.internal.org.objectweb.asm.commons=ALL-UNNAMED --add-exports=java.base/com.ibm.oti.vm=ALL-UNNAMED \
 	-javaagent:$(Q)$(TEST_RESROOT)$(D)javaagenttest.jar$(Q) \
