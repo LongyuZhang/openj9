@@ -274,6 +274,12 @@ def build() {
         def make_target = 'all'
         OPENJDK_CLONE_DIR = "${env.WORKSPACE}/${OPENJDK_CLONE_DIR}"
 
+        // lztest: Gcov Setting
+        env.GCOV_PREFIX_STRIP = 4
+        env.GCOV_PREFIX = '/lztest_success/'
+        echo "lztest3 env.GCOV_PREFIX_STRIP:'${env.GCOV_PREFIX_STRIP}'"
+        echo "lztest3 env.GCOV_PREFIX:'${env.GCOV_PREFIX}'"
+
         withEnv(BUILD_ENV_VARS_LIST) {
             dir(OPENJDK_CLONE_DIR) {
                 try {
