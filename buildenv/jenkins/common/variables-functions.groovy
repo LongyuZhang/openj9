@@ -641,11 +641,13 @@ def set_sdk_variables() {
     echo "SDK_FILENAME:'${SDK_FILENAME}'"
 
     TEST_FILENAME = "test-images.tar.gz"
+    CODE_COVERAGE_FILENAME = "code-coverage-files.tar.gz"
     JAVADOC_FILENAME = "OpenJ9-JDK${SDK_VERSION}-Javadoc-${SPEC}-${DATESTAMP}.tar.gz"
     JAVADOC_OPENJ9_ONLY_FILENAME = "OpenJ9-JDK${SDK_VERSION}-Javadoc-openj9-${SPEC}-${DATESTAMP}.tar.gz"
     DEBUG_IMAGE_FILENAME = "debug-image.tar.gz"
     echo "Using SDK_FILENAME = ${SDK_FILENAME}"
     echo "Using TEST_FILENAME = ${TEST_FILENAME}"
+    echo "Using CODE_COVERAGE_FILENAME = ${CODE_COVERAGE_FILENAME}"
     echo "Using JAVADOC_FILENAME = ${JAVADOC_FILENAME}"
     echo "Using JAVADOC_OPENJ9_ONLY_FILENAME = ${JAVADOC_OPENJ9_ONLY_FILENAME}"
     echo "Using DEBUG_IMAGE_FILENAME = ${DEBUG_IMAGE_FILENAME}"
@@ -1057,6 +1059,9 @@ def set_job_variables(job_type) {
     // Set ARCHIVE_JAVADOC flag
     ARCHIVE_JAVADOC = (params.ARCHIVE_JAVADOC) ? params.ARCHIVE_JAVADOC : false
     echo "Using ARCHIVE_JAVADOC = ${ARCHIVE_JAVADOC}"
+    // Set CODE_COVERAGE flag
+    CODE_COVERAGE = (params.CODE_COVERAGE) ? params.CODE_COVERAGE : false
+    echo "Using CODE_COVERAGE = ${CODE_COVERAGE}"
 
     switch (job_type) {
         case "build":
@@ -1358,6 +1363,13 @@ def set_build_extra_options(build_specs=null) {
         }
 
         EXTRA_MAKE_OPTIONS = params.EXTRA_MAKE_OPTIONS
+        if (params.CODE_COVERAGE) {
+            def MAKE_OPTIONS_CODE_COVERAGE = "EXTRA_CMAKE_ARGS=-DCODE_COVERAGE=ON"
+            EXTRA_MAKE_OPTIONS = [EXTRA_MAKE_OPTIONS, MAKE_OPTIONS_CODE_COVERAGE].findAll().join(" ")
+
+            echo "testtest0; EXTRA_MAKE_OPTIONS with CODE Coverage ${EXTRA_MAKE_OPTIONS}"
+
+        }
         if (!EXTRA_MAKE_OPTIONS) {
             EXTRA_MAKE_OPTIONS = buildspec.getVectorField("extra_make_options", SDK_VERSION).join(" ")
         }
