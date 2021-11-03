@@ -31,7 +31,8 @@
 		<arg>-c</arg>
 			<arg>$EXE$</arg>
 		</exec>
-		<command>cat output.txt</command>
+		<!-- <command>cat output.txt</command> -->
+		<command>tso listcat | grep 'output.txt'</command>
 		<output type="success" regex="no">Exiting ...</output>
 		<output type="failure" regex="no">Segmentation fault</output>
 	</test>

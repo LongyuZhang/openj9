@@ -28,10 +28,6 @@
 				<comment>Segmentation fault after killing the process</comment>
 				<platform>.*windows.*</platform>
 			</disable>
-			<disable>
-				<comment>https://github.ibm.com/runtimes/backlog/issues/606</comment>
-				<platform>.*zos.*</platform>
-			</disable>
 		</disables>
 		<variations>
 			<variation>NoOptions</variation>
@@ -40,7 +36,7 @@
 	-DJARPATH=$(Q)$(TEST_RESROOT)$(D)hangTest.jar$(Q) \
 	-DEXE=$(SQ)bash $(TEST_RESROOT)$(D)hang.sh $(JAVA_COMMAND) $(TEST_RESROOT)$(D)hangTest.jar $(JVM_OPTIONS) $(SQ) -jar $(CMDLINETESTER_JAR) \
 	-config $(Q)$(TEST_RESROOT)$(D)hang.xml$(Q) \
-	-xids all,$(PLATFORM) -explainExcludes -nonZeroExitWhenError; \
+	-xids all,$(PLATFORM) -verbose -explainExcludes -nonZeroExitWhenError; \
 	$(TEST_STATUS)</command>
 		<levels>
 			<level>extended</level>
