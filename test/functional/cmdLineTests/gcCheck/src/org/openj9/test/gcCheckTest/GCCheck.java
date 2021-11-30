@@ -20,9 +20,9 @@
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
  *******************************************************************************/
 
-package org.openj9.test.nogc;;
+package org.openj9.test.gcCheckTest;
 
-class Main {
+public class GCCheck {
 	public static void main(String args[]) throws Exception {
 		int count = 0;
  	  	Thread allocator = new Allocator();
