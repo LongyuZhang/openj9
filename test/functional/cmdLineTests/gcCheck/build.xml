@@ -47,9 +47,9 @@
 		<echo>===executable:                   ${compiler.javac}</echo>
 		<echo>===debug:                        on</echo>
 		<echo>===destdir:                      ${DEST}</echo>
-		<javac destdir="${build}" debug="true" fork="true" executable="${compiler.javac}" includeAntRuntime="false" encoding="ISO-8859-1">
-			<src path="${src}" />
+		<javac srcdir="${src}" destdir="${build}" debug="true" fork="true" executable="${compiler.javac}" includeAntRuntime="false" encoding="ISO-8859-1">
 			<include name="${TEST_ROOT}/functional/Java8andUp/src/org/openj9/test/nogc/Allocator.java"/>
+			<src path="${src}" />
 		</javac>
 	</target>
 
