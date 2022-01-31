@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<!--
+  Copyright (c) 2001, 2022 IBM Corp. and others
+
+  This program and the accompanying materials are made available under
+  the terms of the Eclipse Public License 2.0 which accompanies this
+  distribution and is available at https://www.eclipse.org/legal/epl-2.0/
+  or the Apache License, Version 2.0 which accompanies this distribution and
+  is available at https://www.apache.org/licenses/LICENSE-2.0.
+
+  This Source Code may also be made available under the following
+  Secondary Licenses when the conditions for such availability set
+  forth in the Eclipse Public License, v. 2.0 are satisfied: GNU
+  General Public License, version 2 with the GNU Classpath
+  Exception [1] and GNU General Public License, version 2 with the
+  OpenJDK Assembly Exception [2].
+
+  [1] https://www.gnu.org/software/classpath/license.html
+  [2] http://openjdk.java.net/legal/assembly-exception.html
+
+  SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
+-->
+
+<!DOCTYPE suite SYSTEM "cmdlinetester.dtd">
+
+<suite id="J9 GC Rotating Verbose Log Tests" timeout="900">
+
+ <!-- Arguments used in all tests -->
+ <!-- "-XX:fatalassert" should be re-added to this ARGS_FOR_ALL_TESTS once it is properly supported on non-sidecar specs (see CMVC 130850) -->
+ <variable name="ARGS_FOR_ALL_TESTS" value=" -Dcom.ibm.tools.attach.enable=no -Xdump:system:events=systhrow,filter=java/lang/OutOfMemoryError" />
+ <variable name="CP" value="-cp $TESTSJARPATH$" />
+ <variable name="XINT" value="-Xint" />
+ 
+ <!-- Arguments specific to the class unloading tests -->
+ <variable name="PROGRAM" value="com.ibm.tests.garbagecollector.TestClassLoaderMain" />
+ <variable name="MEM" value="8m" />
+ <variable name="VMARGS" value="-Xmx$MEM$ -Xms$MEM$ -Xalwaysclassgc -Xdisableexcessivegc" />
+ <variable name="EXTRAVMARG" value="-Xgc:fvtest=forceFinalizeClassLoaders" />
+ <variable name="EXCESSIVE_STRING" value="excessive gc activity detected, will fail on allocate" />
+ 
+ <!-- by default, allocation context count is based on the number of CPUs but this can cause non-deterministic pass/fail conditions -->
+ <variable name="RT_ALLOCATION_CONTEXT_ARG" value=" " />
+ <variable name="RT_ALLOCATION_CONTEXT_ARG" value="-XXgc:allocationContextCount=1" platforms="Mode301" />
+
+ <test id="GC rotating verbose log file name contains %s">
+  <exec command="rm foo*.*" />
+  <exec command="$EXE$ $XINT$ -verbose:gc -Xms8m -Xmx8m -Xverbosegclog:foo%s%s%s%s%s%s,5,1 $CP$ com.ibm.tests.garbagecollector.SpinAllocate 1" />
+  <!-- check a file with name foo%s%s%s%s%s%s.005 is created -->
+  <command>cat foo%s%s%s%s%s%s.005</command>
+  <output regex="no" type="failure">No such file or directory</output>
+  <output regex="no" type="success">&lt;/verbosegc&gt;</output>
+ </test>
+
+ <test id="GC rotating verbose log file name contains %s and other random symbols">
+  <exec command="rm foo*.*" />
+  <exec command="$EXE$ $XINT$ -verbose:gc -Xms8m -Xmx8m -Xverbosegclog:foo%s%s%s%s%s%s1234567%s%s%s%s%s%s!@%^*%s%s%s%s%s%sabcdef.#,5,1 $CP$ com.ibm.tests.garbagecollector.SpinAllocate 1" />
+  <!-- check a file with name foo%s%s%s%s%s%s1234567%s%s%s%s%s%s!@%^*%s%s%s%s%s%sabcdef.005 is created -->
+  <command>cat foo%s%s%s%s%s%s1234567%s%s%s%s%s%s!@%^*%s%s%s%s%s%sabcdef.005</command>
+  <output regex="no" type="failure">No such file or directory</output>
+  <output regex="no" type="success">&lt;/verbosegc&gt;</output>
+ </test>
+
+ <test id="GC rotating verbose log file name contains %s %c %i">
+  <exec command="rm foo*.*" />
+  <exec command="$EXE$ $XINT$ -verbose:gc -Xms8m -Xmx8m -Xverbosegclog:foo%s%s%s%s%s%s%c%c%c%c%c%i%i%i%i%i,5,1 $CP$ com.ibm.tests.garbagecollector.SpinAllocate 1" />
+  <!-- check a file with name foo%s%s%s%s%s%s%c%c%c%c%c%i%i%i%i%i.005 is created -->
+  <command>cat foo%s%s%s%s%s%s%c%c%c%c%c%i%i%i%i%i.005</command>
+  <output regex="no" type="failure">No such file or directory</output>
+  <output regex="no" type="success">&lt;/verbosegc&gt;</output>
+ </test>
+
+ <test id="GC rotating verbose log file name contains %s %c %i and other random symbols">
+  <exec command="rm foo*.*" />
+  <exec command="$EXE$ $XINT$ -verbose:gc -Xms8m -Xmx8m -Xverbosegclog:foo%s%s%s%s%s%s%c%c%c%c%c%i%i%i%i%i1234567!@%^*%s%s%s%s%s%s%c%c%c%c%c%i%i%i%i%isabcdef.#,5,1 $CP$ com.ibm.tests.garbagecollector.SpinAllocate 1" />
+  <!-- check a file with name foo%s%s%s%s%s%s1234567%s%s%s%s%s%s!@%^*%s%s%s%s%s%sabcdef.005 is created -->
+  <command>cat foo%s%s%s%s%s%s%c%c%c%c%c%i%i%i%i%i1234567!@%^*%s%s%s%s%s%s%c%c%c%c%c%i%i%i%i%isabcdef.005</command>
+  <output regex="no" type="failure">No such file or directory</output>
+  <output regex="no" type="success">&lt;/verbosegc&gt;</output>
+ </test>
+</suite>
