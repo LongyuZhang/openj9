@@ -25,7 +25,7 @@
 echo "start running script"
 rm -rf ./cpData
 mkdir cpData
-$2 $3 -XX:+EnableCRIUSupport -cp "$1/criu.jar" CRIUSimpleTest >foo 2>&1
+$2 -XX:+EnableCRIUSupport -cp "$1/criu.jar" CRIUSimpleTest >foo 2>&1
 criu restore -D ./cpData --shell-job
 cat foo
 echo "finished script"

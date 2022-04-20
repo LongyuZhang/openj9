@@ -27,7 +27,7 @@
 <suite id="J9 Criu Command-Line Option Tests" timeout="300">
 
   <test id="Create and Restore Criu Checkpoint Image">
-    <command>bash $SCRIPPATH$ $TEST_RESROOT$ $JAVA_COMMAND$ $JVM_OPTIONS$</command>
+    <command>bash $SCRIPPATH$ $TEST_RESROOT$ $EXE$</command>
     <output type="success" caseSensitive="no" regex="no">Killed</output>
     <output type="required" caseSensitive="yes" regex="no">Pre-checkpoint</output>
     <output type="required" caseSensitive="yes" regex="no">Post-checkpoint</output>
