@@ -36,9 +36,6 @@
 			-explainExcludes -xids all,$(PLATFORM),$(VARIATION) -nonZeroExitWhenError; \
 			$(TEST_STATUS)
 		</command>
-		<features>
-			<feature>CRIU:required</feature>
-		</features>
 		<levels>
 			<level>sanity</level>
 		</levels>
