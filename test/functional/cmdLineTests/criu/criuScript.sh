@@ -24,18 +24,26 @@
 
 echo "start running script";
 $2 -XX:+EnableCRIUSupport $3 -cp "$1/criu.jar" $4 $5 >testOutput 2>&1;
-sleep 2;
-criu restore -D ./cpData --shell-job;
-if [ "$5" == "TwoCheckpoints" ] || [ "$5" == "ThreeCheckpoints" ]
-then
-sleep 2;
-criu restore -D ./cpData --shell-job;
+if  [ "$6" != "onlyCheckpoint" ] 
+then 
+    sleep 2;
+    criu restore -D ./cpData --shell-job;
+    if [ "$5" == "TwoCheckpoints" ] || [ "$5" == "ThreeCheckpoints" ]
+    then
+        sleep 2;
+        criu restore -D ./cpData --shell-job;
+    fi
+    if [ "$5" == "ThreeCheckpoints" ]
+    then
+        sleep 2;
+        criu restore -D ./cpData --shell-job;
+    fi
 fi
-if [ "$5" == "ThreeCheckpoints" ]
-then
-sleep 2;
-criu restore -D ./cpData --shell-job;
-fi
+
 cat testOutput;
-rm -rf testOutput
+
+if  [ "$6" != "onlyCheckpoint" ]
+then
+    rm -rf testOutput
+fi
 echo "finished script";
