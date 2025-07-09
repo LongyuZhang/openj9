@@ -810,6 +810,7 @@ public class DumpAPIBasicTests extends TestCase {
 		addNewFilesToDelete(beforeFileNames, afterFileNames);
 		
 		int afterCount = afterFileNames.length;
+		System.out.println("found afterFileNames:" + Arrays.toString(afterFileNames));
 		assertEquals("Failed to find expected number of files in " + userDir + " , found:" + Arrays.toString(afterFileNames), beforeCount + 1, afterCount);
 	}
 	
