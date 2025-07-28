@@ -43,8 +43,8 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0-only WITH Classpath-ex
 	-DRESJAR=$(CMDLINETESTER_RESJAR) \
 	-DJAVA_EXECUTABLE_DIR=$(Q)$(TEST_JDK_HOME)$(D)bin$(Q) \
 	-DSTATLNKJAR=$(Q)$(JVM_TEST_ROOT)$(D)functional$(D)cmdLineTests$(D)jep178staticLinkingTest$(D)jep178staticLinkingTest.jar$(Q) \
-	-DTESTJEP178_STATIC=$(Q)$(JAVA_SHARED_LIBRARIES_DIR)$(D)testjep178_static$(Q) \
-	-DTESTJEP178_DYNAMIC=$(Q)$(JAVA_SHARED_LIBRARIES_DIR)$(D)testjep178_dynamic$(Q) \
+	-DTESTJEP178_STATIC=$(SQ)$(JAVA_SHARED_LIBRARIES_DIR)$(D)testjep178_static$(SQ) \
+	-DTESTJEP178_DYNAMIC=$SQ)$(JAVA_SHARED_LIBRARIES_DIR)$(D)testjep178_dynamic$(SQ) \
 	-DAGENTLIBA=testjvmtiA \
 	-DAGENTLIBB=testjvmtiB \
 	-DJVMLIBPATH=$(Q)$(J9VM_PATH)$(Q) \
@@ -89,8 +89,8 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0-only WITH Classpath-ex
 	-DRESJAR=$(CMDLINETESTER_RESJAR) \
 	-DJAVA_EXECUTABLE_DIR=$(Q)$(TEST_JDK_HOME)$(D)bin$(Q) \
 	-DSTATLNKJAR=$(Q)$(JVM_TEST_ROOT)$(D)functional$(D)cmdLineTests$(D)jep178staticLinkingTest$(D)jep178staticLinkingTest.jar$(Q) \
-	-DTESTJEP178_STATIC=$(Q)$(JAVA_SHARED_LIBRARIES_DIR)$(D)testjep178_static$(Q) \
-	-DTESTJEP178_DYNAMIC=$(Q)$(JAVA_SHARED_LIBRARIES_DIR)$(D)testjep178_dynamic$(Q) \
+	-DTESTJEP178_STATIC=$(SQ)$(JAVA_SHARED_LIBRARIES_DIR)$(D)testjep178_static$(SQ) \
+	-DTESTJEP178_DYNAMIC=$(SQ)$(JAVA_SHARED_LIBRARIES_DIR)$(D)testjep178_dynamic$(SQ) \
 	-DAGENTLIBA=testjvmtiA \
 	-DAGENTLIBB=testjvmtiB \
 	-DJVMLIBPATH=$(Q)$(J9VM_PATH)$(Q) \
